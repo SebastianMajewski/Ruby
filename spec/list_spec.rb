@@ -110,4 +110,38 @@ RSpec.describe 'list.rb' do
       expect(list.count).to eq 1
     end
   end
+  describe '#get_at' do
+    it 'should return 3' do
+      list.add_last(2)
+      list.add_last(3)
+      expect(list.get_at(1)).to eq 3
+    end
+    it 'should return 2' do
+      list.add_last(2)
+      list.add_last(3)
+      expect(list.get_at(0)).to eq 2
+    end
+    it 'should raise error when index is wrong' do
+      expect { list.get_at(1) }.to raise_error('Nieprawidlowy index')
+    end
+    it 'should not to raise error when index is right' do
+      list.add_last(2)
+      list.add_last(3)
+      expect { list.get_at(1) }.not_to raise_error
+    end
+  end
+  describe '#get_index' do
+    it 'should not to raise error when element is not in list' do
+      expect { list.get_index(1) }.not_to raise_error
+    end
+    it 'should return -1 when element is not in list' do
+      list.add_first(2)
+      expect(list.get_index(1)).to eq(-1)
+    end
+    it 'should return 1 when element is second' do
+      list.add_first(2)
+      list.add_last(1)
+      expect(list.get_index(1)).to eq(1)
+    end
+  end
 end

@@ -90,11 +90,11 @@ module List
         current = @start
         index.times { current = current.next }
         current.node
-        nil
       end
 
       def get_index(element)
         raise 'Nieprawdidlowy element' if element.class != @type
+        return -1 if count.zero?
         current = @start
         index = 0
         return 0 if current.node == element
@@ -103,7 +103,7 @@ module List
           index += 1
         end
         return index if current.node == element
-        return -1
+        -1
       end
     end
 end
